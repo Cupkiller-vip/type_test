@@ -1,0 +1,68 @@
+<template>
+  <div class="inputSection" :style="{ '--size': size + 'rem' }">
+    <div :class="{ contentDay: isChange, contentNight: !isChange }">
+      {{ props.content }}
+    </div>
+    <el-input
+      v-model="state.input"
+      :disabled="state.isComplete"
+      :style="{ '--size': size + 'rem', '--realSize': size - 0.5 + 'rem' }"
+    ></el-input>
+  </div>
+</template>
+
+<script setup>
+import { reactive, defineProps, watch } from "vue";
+const props = defineProps({
+  content: String,
+  size: Number,
+  isChange: Boolean,
+});
+const state = reactive({
+  input: "",
+  count: 0,
+  correctLength: 0,
+  isComplete: false,
+});
+watch(
+  () => state.input,
+  (newVal) => {
+    if (newVal.length < state.correctLength) {
+      state.correctLength--;
+      return;
+    }
+    if (
+      newVal.slice(state.correctLength, newVal.length) ===
+      props.content.slice(state.correctLength, newVal.length)
+    ) {
+      state.correctLength = newVal.length;
+    }
+    if (state.correctLength === props.content.length) {
+      state.isComplete = !state.isComplete;
+    }
+  }
+);
+</script>
+
+<style scoped>
+.inputSection {
+  font-family: 楷体;
+  font-size: var(--size);
+}
+.contentDay {
+  background-color: white;
+  color: black;
+}
+.contentNight {
+  background-color: black;
+  color: white;
+}
+.el-input {
+  height: var(--size);
+}
+:deep(.el-input__inner) {
+  height: var(--realSize);
+  font-family: 楷体;
+  font-size: var(--realSize);
+}
+</style>
