@@ -1,57 +1,35 @@
 <template>
-  <div class="main">
-    <inputPart
-      v-for="(item, index) in state.items"
-      :key="index"
-      :content="item"
-      :size="state.size"
-      :isChange="state.isChange"
-    ></inputPart>
-  </div>
-  <div class="adjust">
-    <div class="adjustSize">
-      <el-slider
-        v-model="state.size"
-        :min="1"
-        :max="4"
-        :step="0.2"
-        show-input
-      ></el-slider>
-    </div>
-    <div class="adjustTheme">
-      <el-button @click="adjustTheme">点我切换主题</el-button>
-    </div>
+  <div class="home">
+    <div @click="goUpload" class="hvr-fade button size">上传内容</div>
+    <div @click="goInput" class="hvr-fade button size">进入测试</div>
   </div>
 </template>
-
 <script setup>
-import { reactive } from "vue";
-import InputPart from "../components/InputPart.vue";
-const state = reactive({
-  items: [
-    "如果那两个字没有颤抖",
-    "我不会 发现我难受",
-    "怎么说出口 也不过是分手",
-  ],
-  size: 1,
-  isChange: true,
-});
-function adjustTheme() {
-  state.isChange = !state.isChange;
+import { useRouter } from "vue-router";
+const $router = useRouter();
+function goUpload() {
+  $router.push({
+    name: "contentUpload",
+  });
+}
+function goInput() {
+  $router.push({
+    name: "contentInput",
+  });
 }
 </script>
-
-<style>
-.main {
-  width: 80%;
-  height: 75vh;
-}
-.adjust {
+<style scoped>
+.home {
+  width: 100%;
+  height: 100%;
   display: flex;
-  width: 50%;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.adjustSize {
-  width: 75%;
+.size {
+  width: 20%;
+  height: 20%;
+  font-size: 0.3rem;
 }
 </style>

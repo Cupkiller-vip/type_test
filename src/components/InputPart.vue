@@ -1,12 +1,15 @@
 <template>
-  <div class="inputSection" :style="{ '--size': size + 'rem' }">
+  <div class="inputPart" :style="{ '--size': size * 0.1 + 'rem' }">
     <div :class="{ contentDay: isChange, contentNight: !isChange }">
       {{ props.content }}
     </div>
     <el-input
       v-model="state.input"
       :disabled="state.isComplete"
-      :style="{ '--size': size + 'rem', '--realSize': size - 0.5 + 'rem' }"
+      :style="{
+        '--size': size * 0.1 + 'rem',
+        '--realSize': size * 0.1 - 0.5 + 'rem',
+      }"
     ></el-input>
   </div>
 </template>
@@ -45,8 +48,7 @@ watch(
 </script>
 
 <style scoped>
-.inputSection {
-  font-family: 楷体;
+.inputPart {
   font-size: var(--size);
 }
 .contentDay {
@@ -62,7 +64,6 @@ watch(
 }
 :deep(.el-input__inner) {
   height: var(--realSize);
-  font-family: 楷体;
   font-size: var(--realSize);
 }
 </style>
