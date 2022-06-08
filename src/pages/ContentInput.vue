@@ -9,19 +9,17 @@
         :isChange="state.isChange"
       ></inputPart>
     </div>
-    <div class="adjust">
-      <div class="adjustSize">
-        <el-slider
-          v-model="state.size"
-          :min="1"
-          :max="4"
-          :step="0.2"
-          show-input
-        ></el-slider>
-      </div>
-      <div>
-        <el-button @click="adjustTheme">点我切换主题</el-button>
-      </div>
+    <div class="settingInput">
+      <el-slider
+        v-model="state.size"
+        :min="1"
+        :max="3"
+        :step="0.1"
+        vertical
+        height="25vh"
+        style="justify-content: center"
+      ></el-slider>
+      <el-button @click="adjustTheme">点我切换主题</el-button>
     </div>
   </div>
 </template>
@@ -51,20 +49,27 @@ onMounted(() => {
 <style>
 .contentInput {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 }
 .main {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   min-height: 75vh;
 }
-.adjust {
+.settingInput {
   display: flex;
-  width: 50%;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: fixed;
+  height: 40vh;
+  top: 30vh;
+  right: 0.1rem;
 }
-.adjustSize {
-  width: 75%;
+.el-slider__runway {
+  flex: none;
+}
+.el-slider__button-wrapper {
+  line-height: 0;
 }
 </style>
