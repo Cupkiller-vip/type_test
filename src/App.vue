@@ -1,9 +1,8 @@
 <template>
-  <router-view></router-view>
+  <router-view class="animate__animated animate__fadeInUp fill"></router-view>
 </template>
 
 <script setup>
-import Home from "./pages/Home.vue";
 function refreshRem() {
   let docEl = document.documentElement;
   let width = docEl.getBoundingClientRect().width;
@@ -29,6 +28,10 @@ body {
   align-items: center;
   width: 100%;
   height: 100vh;
+}
+.fill {
+  width: 100%;
+  height: 100%;
 }
 .buttonGroup {
   display: flex;

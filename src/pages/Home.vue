@@ -20,8 +20,6 @@ function goInput() {
 </script>
 <style scoped>
 .home {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;

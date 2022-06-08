@@ -1,25 +1,27 @@
 <template>
-  <div class="main">
-    <inputPart
-      v-for="(item, index) in state.items"
-      :key="index"
-      :content="item"
-      :size="state.size"
-      :isChange="state.isChange"
-    ></inputPart>
-  </div>
-  <div class="adjust">
-    <div class="adjustSize">
-      <el-slider
-        v-model="state.size"
-        :min="1"
-        :max="4"
-        :step="0.2"
-        show-input
-      ></el-slider>
+  <div class="contentInput">
+    <div class="main">
+      <inputPart
+        v-for="(item, index) in state.items"
+        :key="index"
+        :content="item"
+        :size="state.size"
+        :isChange="state.isChange"
+      ></inputPart>
     </div>
-    <div class="adjustTheme">
-      <el-button @click="adjustTheme">点我切换主题</el-button>
+    <div class="adjust">
+      <div class="adjustSize">
+        <el-slider
+          v-model="state.size"
+          :min="1"
+          :max="4"
+          :step="0.2"
+          show-input
+        ></el-slider>
+      </div>
+      <div>
+        <el-button @click="adjustTheme">点我切换主题</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -47,10 +49,15 @@ onMounted(() => {
 </script>
 
 <style>
+.contentInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 .main {
   width: 80%;
-  height: 75vh;
-  justify-content: space-between;
+  min-height: 75vh;
 }
 .adjust {
   display: flex;

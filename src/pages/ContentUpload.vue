@@ -1,14 +1,16 @@
 <template>
-  <el-input
-    class="uploadPart"
-    v-model="state.text"
-    :autosize="{ minRows: 4, maxRows: 10 }"
-    type="textarea"
-    placeholder="在此输入测试内容"
-  />
-  <div class="buttonGroup size">
-    <div @click="toCancel" class="hvr-fade button size">取消</div>
-    <div @click="toConfirm" class="hvr-fade button size">确定</div>
+  <div class="contentUpload">
+    <el-input
+      class="uploadPart"
+      v-model="state.text"
+      :autosize="{ minRows: 4, maxRows: 10 }"
+      type="textarea"
+      placeholder="在此输入测试内容"
+    />
+    <div class="buttonGroup size">
+      <div @click="toCancel" class="hvr-fade button size">取消</div>
+      <div @click="toConfirm" class="hvr-fade button size">确定</div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -33,8 +35,15 @@ function toConfirm() {
 }
 </script>
 <style scoped>
+.contentUpload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .uploadPart {
   width: 80%;
+  font-size: 0.1rem;
 }
 .size {
   width: 50%;

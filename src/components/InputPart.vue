@@ -8,7 +8,7 @@
       :disabled="state.isComplete"
       :style="{
         '--size': size * 0.1 + 'rem',
-        '--realSize': size * 0.1 - 0.5 + 'rem',
+        '--realSize': size * 0.1 - 0.05 + 'rem',
       }"
     ></el-input>
   </div>
