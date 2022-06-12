@@ -45,6 +45,7 @@ body {
   background-color: var(--el-color-primary);
   margin: 0 10%;
   cursor: pointer;
+  border-radius: 3% / 9%;
 }
 .hvr-fade {
   vertical-align: middle;
@@ -57,7 +58,7 @@ body {
 .hvr-fade:hover,
 .hvr-fade:focus,
 .hvr-fade:active {
-  background-color: #2098d1;
+  background-color: var(--el-color-primary-light-3);
   color: white;
 }
 </style>

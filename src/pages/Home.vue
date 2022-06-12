@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <div @click="goUpload" class="hvr-fade button size">上传内容</div>
-    <div @click="goInput" class="hvr-fade button size">进入测试</div>
+    <div class="buttonGroup size">
+      <div @click="goUpload" class="hvr-fade button size">上传内容</div>
+      <div @click="goInput" class="hvr-fade button size">进入测试</div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -26,8 +28,12 @@ function goInput() {
   align-items: center;
 }
 .size {
-  width: 20%;
+  width: 50%;
   height: 20%;
-  font-size: 0.3rem;
+}
+.buttonGroup > .size {
+  width: 25%;
+  height: 75%;
+  font-size: 0.25rem;
 }
 </style>
