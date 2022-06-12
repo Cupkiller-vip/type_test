@@ -17,9 +17,10 @@
         :step="0.1"
         vertical
         height="25vh"
-        style="justify-content: center"
+        style="justify-content: center; margin-bottom: 10%"
       ></el-slider>
-      <el-button @click="adjustTheme">点我切换主题</el-button>
+      <el-button @click="adjustTheme">切换主题</el-button>
+      <el-button @click="backHome">返回首页</el-button>
     </div>
   </div>
 </template>
@@ -28,6 +29,8 @@
 import { reactive, onMounted } from "vue";
 import { contentStore } from "../stores/content";
 import inputPart from "../components/InputPart.vue";
+import { useRouter } from "vue-router";
+const $router = useRouter();
 const content = contentStore();
 const state = reactive({
   items: [],
@@ -36,6 +39,11 @@ const state = reactive({
 });
 function adjustTheme() {
   state.isChange = !state.isChange;
+}
+function backHome() {
+  $router.push({
+    name: "home",
+  });
 }
 onMounted(() => {
   let rows = content.text.length / 10;
@@ -71,5 +79,8 @@ onMounted(() => {
 }
 .el-slider__button-wrapper {
   line-height: 0;
+}
+.el-button + .el-button {
+  margin-left: 0;
 }
 </style>
