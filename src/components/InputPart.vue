@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { reactive, defineProps, watch } from "vue";
+import { reactive, defineProps, watch, defineEmits } from "vue";
 const props = defineProps({
   content: String,
   size: Number,
@@ -27,6 +27,7 @@ const state = reactive({
   correctLength: 0,
   isComplete: false,
 });
+const emit = defineEmits()
 watch(
   () => state.input,
   (newVal) => {
@@ -41,6 +42,9 @@ watch(
       state.correctLength = newVal.length;
     }
     if (state.correctLength === props.content.length) {
+      let event = new KeyboardEvent("goNextLine", {
+        key: "Tab",
+      });
       state.isComplete = !state.isComplete;
     }
   }

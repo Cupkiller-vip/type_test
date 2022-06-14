@@ -9,6 +9,11 @@
         :isChange="state.isChange"
       ></inputPart>
     </div>
+    <div class="dataShow">
+      <div>剩余时间：{{ state.reTime }}</div>
+      <div>瞬时速度：</div>
+      <div>正确率：</div>
+    </div>
     <div class="settingInput">
       <el-slider
         v-model="state.size"
@@ -26,7 +31,7 @@
 </template>
 
 <script setup>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, ref } from "vue";
 import { contentStore } from "../stores/content";
 import inputPart from "../components/InputPart.vue";
 import { useRouter } from "vue-router";
@@ -36,7 +41,11 @@ const state = reactive({
   items: [],
   size: 1,
   isChange: true,
+  time: 60,
+  reTime: Number,
 });
+let speed = ref("");
+let accuracy = ref("");
 function adjustTheme() {
   state.isChange = !state.isChange;
 }
@@ -45,12 +54,34 @@ function backHome() {
     name: "home",
   });
 }
+function countDown() {
+  let countDownGo;
+  let startTime = new Date().getTime();
+  let endTime;
+  state.reTime = state.time
+  function countDownSetting() {
+    state.reTime = state.reTime - 1;
+    endTime = new Date().getTime();
+    let nextTime =
+      1000 - endTime + startTime + (state.time - state.reTime) * 1000;
+    if (nextTime < 0) {
+      nextTime = 0;
+    }
+    if (state.reTime <= 0) {
+      clearTimeout(countDownGo);
+    } else {
+      countDownGo = setTimeout(() => countDownSetting(), nextTime);
+    }
+  }
+  countDownGo = setTimeout(() => countDownSetting(), 1000);
+}
 onMounted(() => {
-  let rows = content.text.length / 10;
+  let rows = content.text.length / 20;
   for (let i = 0; i < rows; i++) {
     let j = i + 1;
-    state.items.push(content.text.slice(i * 10, j * 10));
+    state.items.push(content.text.slice(i * 20, j * 20));
   }
+  countDown();
 });
 </script>
 
@@ -62,8 +93,20 @@ onMounted(() => {
 .main {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 70%;
   min-height: 75vh;
+}
+.dataShow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 20vh;
+  height: 40vh;
+  top: 30vh;
+  left: 0.1rem;
+  font-size: 0.15rem;
 }
 .settingInput {
   display: flex;

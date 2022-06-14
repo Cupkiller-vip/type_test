@@ -22,6 +22,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 楷体;
 }
+input {
+  font-family: 楷体;
+}
 #app {
   display: flex;
   flex-direction: column;
