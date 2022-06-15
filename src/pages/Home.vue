@@ -7,7 +7,10 @@
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { contentStore } from "../stores/content";
+const content = contentStore();
 const $router = useRouter();
 function goUpload() {
   $router.push({
@@ -19,6 +22,9 @@ function goInput() {
     name: "contentInput",
   });
 }
+onMounted(() => {
+  content.changeTime();
+});
 </script>
 <style scoped>
 .home {

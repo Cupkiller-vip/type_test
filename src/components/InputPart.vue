@@ -5,6 +5,7 @@
     </div>
     <el-input
       v-model="state.input"
+      :id="props.id"
       :disabled="state.isComplete"
       :style="{
         '--size': size * 0.1 + 'rem',
@@ -15,8 +16,9 @@
 </template>
 
 <script setup>
-import { reactive, defineProps, watch, defineEmits } from "vue";
+import { reactive, defineProps, watch, onMounted } from "vue";
 const props = defineProps({
+  id: String,
   content: String,
   size: Number,
   isChange: Boolean,
@@ -27,7 +29,10 @@ const state = reactive({
   correctLength: 0,
   isComplete: false,
 });
-const emit = defineEmits()
+const eventObj = new KeyboardEvent("keydown", {
+  key: "Tab",
+  code: "Tab",
+});
 watch(
   () => state.input,
   (newVal) => {
@@ -42,13 +47,16 @@ watch(
       state.correctLength = newVal.length;
     }
     if (state.correctLength === props.content.length) {
-      let event = new KeyboardEvent("goNextLine", {
-        key: "Tab",
-      });
       state.isComplete = !state.isComplete;
     }
   }
 );
+onMounted(() => {
+//   window.addEventListener("keydown", (e) => {
+//     console.log(e);
+//   });
+//   window.dispatchEvent(eventObj);
+});
 </script>
 
 <style scoped>
