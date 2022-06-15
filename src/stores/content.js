@@ -5,23 +5,33 @@ export const contentStore = defineStore({
   state: () => {
     return {
       text: "又回到最初的起点记忆中你青涩的脸又回到最初的起点记忆中你青涩的脸",
+      inputLength: 0,
       time: Number,
       reTime: Number,
       startTime: Number,
       endTime: Number,
       countDownGo: undefined,
+      isTimeRun: false,
+      dialogVisible:true
     };
   },
   actions: {
     changeText(text) {
       this.text = text;
     },
-    changeTime() {
-      this.time = 5;
-      this.reTime = 5;
+    changeTime(time) {
+      this.time = time;
+      this.reTime = time;
+    },
+    increaseInput(length) {
+      this.inputLength = this.inputLength + length;
+    },
+    decreaseInput(length) {
+      this.inputLength = this.inputLength - length;
     },
     countDown() {
       this.startTime = new Date().getTime();
+      this.isTimeRun = true;
       this.countDownGo = setTimeout(() => this.countDownSetting(), 1000);
     },
     countDownSetting() {
@@ -44,6 +54,7 @@ export const contentStore = defineStore({
     strategies: [
       {
         storage: localStorage,
+        paths:["text"]
       },
     ],
   },

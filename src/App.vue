@@ -64,4 +64,7 @@ input {
   background-color: var(--el-color-primary-light-3);
   color: white;
 }
+.el-dialog__header {
+  font-size: 0.1rem;
+}
 </style>

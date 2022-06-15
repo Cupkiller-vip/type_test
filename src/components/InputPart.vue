@@ -16,7 +16,9 @@
 </template>
 
 <script setup>
-import { reactive, defineProps, watch, onMounted } from "vue";
+import { reactive, defineProps, watch } from "vue";
+import { contentStore } from "../stores/content";
+const content = contentStore();
 const props = defineProps({
   id: String,
   content: String,
@@ -36,14 +38,19 @@ const eventObj = new KeyboardEvent("keydown", {
 watch(
   () => state.input,
   (newVal) => {
+    if (!content.isTimeRun) {
+      content.countDown();
+    }
     if (newVal.length < state.correctLength) {
-      state.correctLength--;
+      content.decreaseInput(state.correctLength - newVal.length);
+      state.correctLength = newVal.length;
       return;
     }
     if (
       newVal.slice(state.correctLength, newVal.length) ===
       props.content.slice(state.correctLength, newVal.length)
     ) {
+      content.increaseInput(newVal.length - state.correctLength);
       state.correctLength = newVal.length;
     }
     if (state.correctLength === props.content.length) {
@@ -51,12 +58,6 @@ watch(
     }
   }
 );
-onMounted(() => {
-//   window.addEventListener("keydown", (e) => {
-//     console.log(e);
-//   });
-//   window.dispatchEvent(eventObj);
-});
 </script>
 
 <style scoped>

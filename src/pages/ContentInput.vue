@@ -27,6 +27,16 @@
       <el-button @click="adjustTheme">切换主题</el-button>
       <el-button @click="backHome">返回首页</el-button>
     </div>
+    <el-dialog
+      v-model="content.dialogVisible"
+      title="数据统计"
+      width="30%"
+      center
+    >
+      <div>总计时间：{{ content.time }}</div>
+      <div>最高速度：</div>
+      <div>平均速度：</div>
+    </el-dialog>
   </div>
 </template>
 
@@ -57,7 +67,6 @@ onMounted(() => {
     let j = i + 1;
     state.items.push(content.text.slice(i * 20, j * 20));
   }
-  content.countDown();
 });
 </script>
 
