@@ -7,11 +7,13 @@
       v-model="state.input"
       :id="props.id"
       :disabled="state.isComplete"
+      @input="timeRun"
       :style="{
         '--size': size * 0.1 + 'rem',
         '--realSize': size * 0.08 + 'rem',
       }"
     ></el-input>
+    <input type="text" @input="timeRun">
   </div>
 </template>
 
@@ -31,16 +33,14 @@ const state = reactive({
   correctLength: 0,
   isComplete: false,
 });
-const eventObj = new KeyboardEvent("keydown", {
-  key: "Tab",
-  code: "Tab",
-});
+function timeRun() {
+  if (!content.isTimeRun) {
+    content.countDown();
+  }
+}
 watch(
   () => state.input,
   (newVal) => {
-    if (!content.isTimeRun) {
-      content.countDown();
-    }
     if (newVal.length < state.correctLength) {
       content.decreaseInput(state.correctLength - newVal.length);
       state.correctLength = newVal.length;
@@ -50,7 +50,9 @@ watch(
       newVal.slice(state.correctLength, newVal.length) ===
       props.content.slice(state.correctLength, newVal.length)
     ) {
-      content.increaseInput(newVal.length - state.correctLength);
+      let changeTextLength = newVal.length - state.correctLength;
+      content.speedUpdate(changeTextLength);
+      content.increaseInput(changeTextLength);
       state.correctLength = newVal.length;
     }
     if (state.correctLength === props.content.length) {

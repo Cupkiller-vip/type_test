@@ -12,7 +12,7 @@
     </div>
     <div class="dataShow">
       <div>剩余时间：{{ content.reTime }}秒</div>
-      <div>瞬时速度：{{ state.speed }}</div>
+      <div>瞬时速度：{{ content.speed }}</div>
     </div>
     <div class="settingInput">
       <el-slider
@@ -33,9 +33,9 @@
       width="30%"
       center
     >
-      <div>总计时间：{{ content.time }}</div>
-      <div>最高速度：</div>
-      <div>平均速度：</div>
+      <div>总计时间：{{ content.time }} 秒</div>
+      <div>最高速度：{{ content.maxSpeed }} 字/秒</div>
+      <div>平均速度：{{ content.averageSpeed }} 字/秒</div>
     </el-dialog>
   </div>
 </template>
@@ -51,7 +51,6 @@ const state = reactive({
   items: [],
   size: 1,
   isChange: true,
-  speed: 0,
 });
 function adjustTheme() {
   state.isChange = !state.isChange;
@@ -61,12 +60,15 @@ function backHome() {
     name: "home",
   });
 }
-onMounted(() => {
+function textProcessing(){
   let rows = content.text.length / 20;
   for (let i = 0; i < rows; i++) {
     let j = i + 1;
     state.items.push(content.text.slice(i * 20, j * 20));
   }
+}
+onMounted(() => {
+  textProcessing()
 });
 </script>
 
@@ -91,7 +93,7 @@ onMounted(() => {
   height: 40vh;
   top: 30vh;
   left: 0.1rem;
-  font-size: 0.15rem;
+  font-size: 0.1rem;
 }
 .settingInput {
   display: flex;
