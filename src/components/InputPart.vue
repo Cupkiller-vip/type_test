@@ -3,17 +3,22 @@
     <div :class="{ contentDay: isChange, contentNight: !isChange }">
       {{ props.content }}
     </div>
-    <el-input
-      v-model="state.input"
-      :id="props.id"
-      :disabled="state.isComplete"
-      @input="timeRun"
-      :style="{
-        '--size': size * 0.1 + 'rem',
-        '--realSize': size * 0.08 + 'rem',
-      }"
-    ></el-input>
-    <input type="text" @input="timeRun">
+    <div class="el-input">
+      <div class="el-input__wrapper">
+        <input
+          type="text"
+          v-model="state.input"
+          :id="props.id"
+          :disabled="state.isComplete"
+          @input="timeRun"
+          class="el-input__inner"
+          :style="{
+            '--size': size * 0.1 + 'rem',
+            '--realSize': size * 0.08 + 'rem',
+          }"
+        />
+      </div>
+    </div>
   </div>
 </template>
 

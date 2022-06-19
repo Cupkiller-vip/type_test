@@ -40,6 +40,7 @@ export const contentStore = defineStore({
     },
     countDown() {
       this.startTime = new Date().getTime();
+      this.lastTime = new Date().getTime();
       this.isTimeRun = true;
       this.countDownGo = setTimeout(() => this.countDownSetting(), 1000);
     },
@@ -59,10 +60,6 @@ export const contentStore = defineStore({
       }
     },
     speedUpdate(changeTextLength) {
-      if (!this.lastTime) {
-        this.lastTime = new Date().getTime();
-        return;
-      }
       this.nowTime = new Date().getTime();
       this.speed = (
         (changeTextLength * 1000.0) /

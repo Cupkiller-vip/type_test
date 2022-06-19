@@ -12,7 +12,7 @@
     </div>
     <div class="dataShow">
       <div>剩余时间：{{ content.reTime }}秒</div>
-      <div>瞬时速度：{{ content.speed }}</div>
+      <div>瞬时速度：{{ content.speed }}字/秒</div>
     </div>
     <div class="settingInput">
       <el-slider
@@ -60,7 +60,7 @@ function backHome() {
     name: "home",
   });
 }
-function textProcessing(){
+function textProcessing() {
   let rows = content.text.length / 20;
   for (let i = 0; i < rows; i++) {
     let j = i + 1;
@@ -68,7 +68,7 @@ function textProcessing(){
   }
 }
 onMounted(() => {
-  textProcessing()
+  textProcessing();
 });
 </script>
 
