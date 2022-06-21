@@ -4,7 +4,7 @@
       <div @click="goUpload" class="hvr-fade button size">上传内容</div>
       <el-input-number
         v-model="state.time"
-        :min="60"
+        :min="5"
         :max="300"
       ></el-input-number>
       <div @click="goInput" class="hvr-fade button size">进入测试</div>
@@ -18,7 +18,7 @@ import { contentStore } from "../stores/content";
 const content = contentStore();
 const $router = useRouter();
 const state = reactive({
-  time: 60,
+  time: 5,
 });
 function goUpload() {
   $router.push({

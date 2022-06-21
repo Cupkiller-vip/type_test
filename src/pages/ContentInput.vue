@@ -12,7 +12,7 @@
     </div>
     <div class="dataShow">
       <div>剩余时间：{{ content.reTime }}秒</div>
-      <div>瞬时速度：{{ content.speed }}字/秒</div>
+      <div>瞬时速度：{{ content.speed }}字/分</div>
     </div>
     <div class="settingInput">
       <el-slider
@@ -34,8 +34,8 @@
       center
     >
       <div>总计时间：{{ content.time }} 秒</div>
-      <div>最高速度：{{ content.maxSpeed }} 字/秒</div>
-      <div>平均速度：{{ content.averageSpeed }} 字/秒</div>
+      <div>最高速度：{{ content.maxSpeed }} 字/分</div>
+      <div>平均速度：{{ content.averageSpeed }} 字/分</div>
     </el-dialog>
   </div>
 </template>

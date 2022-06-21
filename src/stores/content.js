@@ -21,7 +21,7 @@ export const contentStore = defineStore({
   },
   getters: {
     averageSpeed: (state) => {
-      return state.inputLength / state.time;
+      return ((state.inputLength * 60) / state.time).toFixed();
     },
   },
   actions: {
@@ -62,9 +62,9 @@ export const contentStore = defineStore({
     speedUpdate(changeTextLength) {
       this.nowTime = new Date().getTime();
       this.speed = (
-        (changeTextLength * 1000.0) /
+        (changeTextLength * 1000.0 * 60) /
         (this.nowTime - this.lastTime)
-      ).toFixed(3);
+      ).toFixed();
       this.lastTime = this.nowTime;
       if (this.maxSpeed < this.speed) {
         this.maxSpeed = this.speed;
