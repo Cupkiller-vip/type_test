@@ -10,6 +10,7 @@
           v-model="state.input"
           :id="props.id"
           :disabled="state.isComplete"
+          autocomplete="off"
           @input="timeRun"
           @copy.prevent="() => {}"
           @paste.prevent="() => {}"
