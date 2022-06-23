@@ -63,10 +63,10 @@ function backHome() {
   $router.push({
     name: "home",
   });
-  content.changeDialogVisible()
+  content.changeDialogVisible();
 }
 function reTest() {
-  location.reload()
+  location.reload();
 }
 function textProcessing() {
   let rows = content.text.length / 20;

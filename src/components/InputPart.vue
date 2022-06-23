@@ -11,6 +11,9 @@
           :id="props.id"
           :disabled="state.isComplete"
           @input="timeRun"
+          @copy.prevent="() => {}"
+          @paste.prevent="() => {}"
+          @cut.prevent="() => {}"
           class="el-input__inner"
           :style="{
             '--size': size * 0.1 + 'rem',
