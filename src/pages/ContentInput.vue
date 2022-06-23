@@ -36,6 +36,10 @@
       <div>总计时间：{{ content.time }} 秒</div>
       <div>最高速度：{{ content.maxSpeed }} 字/分</div>
       <div>平均速度：{{ content.averageSpeed }} 字/分</div>
+      <div class="buttonGroup size">
+        <div class="button size" @click="backHome">返回首页</div>
+        <div class="button size" @click="reTest">重新测试</div>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -59,6 +63,10 @@ function backHome() {
   $router.push({
     name: "home",
   });
+  content.changeDialogVisible()
+}
+function reTest() {
+  location.reload()
 }
 function textProcessing() {
   let rows = content.text.length / 20;
@@ -69,6 +77,7 @@ function textProcessing() {
 }
 onMounted(() => {
   textProcessing();
+  content.resetTime();
 });
 </script>
 

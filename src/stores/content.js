@@ -30,7 +30,12 @@ export const contentStore = defineStore({
     },
     changeTime(time) {
       this.time = time;
-      this.reTime = time;
+    },
+    resetTime() {
+      this.reTime = this.time;
+    },
+    changeDialogVisible() {
+      this.dialogVisible = !this.dialogVisible;
     },
     increaseInput(length) {
       this.inputLength = this.inputLength + length;
@@ -54,7 +59,7 @@ export const contentStore = defineStore({
       }
       if (this.reTime <= 0) {
         clearTimeout(this.countDownGo);
-        this.dialogVisible = true;
+        this.changeDialogVisible();
       } else {
         this.countDownGo = setTimeout(() => this.countDownSetting(), nextTime);
       }
@@ -75,8 +80,14 @@ export const contentStore = defineStore({
     enabled: true,
     strategies: [
       {
+        key: "text",
         storage: localStorage,
         paths: ["text"],
+      },
+      {
+        key: "time",
+        storage: localStorage,
+        paths: ["time"],
       },
     ],
   },

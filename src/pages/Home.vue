@@ -27,6 +27,7 @@ function goUpload() {
 }
 function goInput() {
   content.changeTime(state.time);
+  localStorage.setItem("time", `{"time":${state.time}}`);
   $router.push({
     name: "contentInput",
   });

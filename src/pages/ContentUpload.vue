@@ -28,7 +28,7 @@ function toCancel() {
   });
 }
 function toConfirm() {
-  content.change(state.text);
+  content.changeText(state.text);
   $router.push({
     name: "home",
   });
