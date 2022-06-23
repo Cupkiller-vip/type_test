@@ -29,6 +29,7 @@ function toCancel() {
 }
 function toConfirm() {
   content.changeText(state.text);
+  localStorage.setItem("text", `{"text":${JSON.stringify(state.text)}}`);
   $router.push({
     name: "home",
   });

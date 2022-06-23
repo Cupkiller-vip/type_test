@@ -37,8 +37,8 @@
       <div>最高速度：{{ content.maxSpeed }} 字/分</div>
       <div>平均速度：{{ content.averageSpeed }} 字/分</div>
       <div class="buttonGroup size">
-        <div class="button size" @click="backHome">返回首页</div>
-        <div class="button size" @click="reTest">重新测试</div>
+        <div class="button size hvr-fade" @click="backHome">返回首页</div>
+        <div class="button size hvr-fade" @click="reTest">重新测试</div>
       </div>
     </el-dialog>
   </div>
@@ -68,11 +68,24 @@ function backHome() {
 function reTest() {
   location.reload();
 }
-function textProcessing() {
-  let rows = content.text.length / 20;
+function pushProcessing(r) {
+  let rows = r.length / 20;
   for (let i = 0; i < rows; i++) {
-    let j = i + 1;
-    state.items.push(content.text.slice(i * 20, j * 20));
+    state.items.push(r.slice(i * 20, (i + 1) * 20));
+  }
+}
+function textProcessing() {
+  let i = 0;
+  while (true) {
+    let j = content.text.indexOf("\n", i);
+    if (j === -1) {
+      let r2 = content.text.slice(i);
+      pushProcessing(r2);
+      break;
+    }
+    let r1 = content.text.slice(i, j);
+    pushProcessing(r1);
+    i = j + 1;
   }
 }
 onMounted(() => {
@@ -91,6 +104,7 @@ onMounted(() => {
   flex-direction: column;
   width: 70%;
   min-height: 75vh;
+  user-select: none;
 }
 .dataShow {
   display: flex;

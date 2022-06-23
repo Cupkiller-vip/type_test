@@ -4,7 +4,7 @@ export const contentStore = defineStore({
   id: "content",
   state: () => {
     return {
-      text: "又回到最初的起点记忆中你青涩的脸又回到最初的起点记忆中你青涩的脸",
+      text: "又回到最初的起点\n记忆中你青涩的脸",
       inputLength: 0,
       time: undefined,
       reTime: undefined,

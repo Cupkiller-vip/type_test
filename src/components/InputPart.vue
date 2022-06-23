@@ -1,6 +1,8 @@
 <template>
   <div class="inputPart" :style="{ '--size': size * 0.1 + 'rem' }">
-    <div :class="{ contentDay: isChange, contentNight: !isChange }">
+    <div
+      :class="{ contentDay: isChange, contentNight: !isChange }"
+    >
       {{ props.content }}
     </div>
     <div class="el-input">
