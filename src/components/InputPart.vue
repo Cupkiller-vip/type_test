@@ -1,8 +1,6 @@
 <template>
   <div class="inputPart" :style="{ '--size': size * 0.1 + 'rem' }">
-    <div
-      :class="{ contentDay: isChange, contentNight: !isChange }"
-    >
+    <div>
       {{ props.content }}
     </div>
     <div class="el-input">
@@ -29,7 +27,7 @@
 </template>
 
 <script setup>
-import { reactive, defineProps, watch } from "vue";
+import { reactive, watch } from "vue";
 import { contentStore } from "../stores/content";
 const content = contentStore();
 const props = defineProps({
@@ -76,14 +74,6 @@ watch(
 <style scoped>
 .inputPart {
   font-size: var(--size);
-}
-.contentDay {
-  background-color: white;
-  color: black;
-}
-.contentNight {
-  background-color: black;
-  color: white;
 }
 .el-input {
   height: var(--size);

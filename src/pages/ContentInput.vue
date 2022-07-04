@@ -7,7 +7,6 @@
         :id="String(index)"
         :content="item"
         :size="state.size"
-        :isChange="state.isChange"
       ></inputPart>
     </div>
     <div class="dataShow">
@@ -24,7 +23,7 @@
         height="25vh"
         style="justify-content: center; margin-bottom: 10%"
       ></el-slider>
-      <el-button @click="adjustTheme">切换主题</el-button>
+      <el-button @click="changeTheme">切换主题</el-button>
       <el-button @click="backHome">返回首页</el-button>
     </div>
     <el-dialog
@@ -54,10 +53,9 @@ const content = contentStore();
 const state = reactive({
   items: [],
   size: 1,
-  isChange: true,
 });
-function adjustTheme() {
-  state.isChange = !state.isChange;
+function changeTheme() {
+  content.changeTheme()
 }
 function backHome() {
   $router.push({
@@ -110,7 +108,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: fixed;
   width: 20vh;
   height: 40vh;
@@ -135,5 +133,8 @@ onMounted(() => {
 }
 .el-button + .el-button {
   margin-left: 0;
+}
+.el-input__wrapper{
+  padding: 0;
 }
 </style>

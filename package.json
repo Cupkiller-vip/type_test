@@ -1,7 +1,7 @@
 {
   "name": "type_test",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,7 +13,8 @@
     "pinia": "^2.0.14",
     "pinia-plugin-persist": "^1.0.0",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "what-background": "^0.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

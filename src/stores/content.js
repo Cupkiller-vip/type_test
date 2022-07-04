@@ -17,6 +17,7 @@ export const contentStore = defineStore({
       dialogVisible: false,
       speed: 0,
       maxSpeed: 0,
+      isDark: false,
     };
   },
   getters: {
@@ -74,6 +75,9 @@ export const contentStore = defineStore({
       if (this.maxSpeed < this.speed) {
         this.maxSpeed = this.speed;
       }
+    },
+    changeTheme() {
+      this.isDark = !this.isDark;
     },
   },
   persist: {
