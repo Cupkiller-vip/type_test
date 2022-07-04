@@ -1,16 +1,16 @@
 <template>
   <what-martix
     :circleColor="content.isDark ? `rgba(255,255,255,0.5)` : undefined"
+    :mouseCircleColor="content.isDark ? `rgba(250,246,72,0.5)` : undefined"
   ></what-martix>
-  <router-view
-    class="fill"
-    :class="{ dark: content.isDark }"
-  ></router-view>
+  <router-view class="animate__animated animate__fadeIn fill"></router-view>
 </template>
 
 <script setup>
+import { watch } from "vue";
 import { contentStore } from "./stores/content";
 const content = contentStore();
+const root = document.querySelector(":root");
 function refreshRem() {
   let docEl = document.documentElement;
   let width = docEl.getBoundingClientRect().width;
@@ -19,15 +19,31 @@ function refreshRem() {
 }
 window.addEventListener("load", refreshRem);
 window.addEventListener("resize", refreshRem);
+watch(
+  () => content.isDark,
+  (newValue) => {
+    if (newValue) {
+      root.style.setProperty("--color", "white");
+      root.style.setProperty("--background-color", "black");
+    } else {
+      root.style.setProperty("--color", "black");
+      root.style.setProperty("--background-color", "white");
+    }
+  }
+);
 </script>
 <style>
+:root {
+  --color: black;
+  --background-color: white;
+}
 body {
   margin: 0;
   min-height: 100vh;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-family: 楷体;
+  color: var(--color);
+  background-color: var(--background-color);
 }
 input {
   font-family: 楷体;
@@ -38,10 +54,6 @@ input {
   align-items: center;
   width: 100%;
   height: 100vh;
-}
-.dark {
-  background-color: black;
-  color: white;
 }
 .fill {
   width: 100%;

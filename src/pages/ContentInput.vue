@@ -20,7 +20,7 @@
         :max="3"
         :step="0.1"
         vertical
-        height="25vh"
+        height="20vh"
         style="justify-content: center; margin-bottom: 10%"
       ></el-slider>
       <el-button @click="changeTheme">切换主题</el-button>
@@ -52,7 +52,7 @@ const $router = useRouter();
 const content = contentStore();
 const state = reactive({
   items: [],
-  size: 1,
+  size: 2,
 });
 function changeTheme() {
   content.changeTheme()
