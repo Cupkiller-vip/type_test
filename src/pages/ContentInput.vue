@@ -55,7 +55,7 @@ const state = reactive({
   size: 2,
 });
 function changeTheme() {
-  content.changeTheme()
+  content.changeTheme();
 }
 function backHome() {
   $router.push({
@@ -93,6 +93,17 @@ onMounted(() => {
 </script>
 
 <style>
+@keyframes pulse {
+  0% {
+    filter: brightness(100%);
+  }
+  50% {
+    filter: brightness(200%);
+  }
+  100% {
+    filter: brightness(100%);
+  }
+}
 .contentInput {
   display: flex;
   justify-content: center;
@@ -111,10 +122,18 @@ onMounted(() => {
   align-items: flex-start;
   position: fixed;
   width: 20vh;
-  height: 40vh;
-  top: 30vh;
-  left: 0.1rem;
+  height: 20vh;
+  top: 40vh;
+  left: 0;
   font-size: 0.1rem;
+  border: 0.02rem solid;
+  border-image: linear-gradient(45deg, silver, slategray) 0;
+  clip-path: inset(0 round 0.02rem);
+}
+.dataShow:hover {
+  border-image: linear-gradient(45deg, silver, slategray) 1;
+  transition: 0.1s border ease-in-out;
+  animation: pulse 5s linear infinite;
 }
 .settingInput {
   display: flex;
@@ -134,7 +153,7 @@ onMounted(() => {
 .el-button + .el-button {
   margin-left: 0;
 }
-.el-input__wrapper{
+.el-input__wrapper {
   padding: 0;
 }
 </style>
