@@ -3,7 +3,7 @@
     :circleColor="content.isDark ? `rgba(255,255,255,0.5)` : undefined"
     :mouseCircleColor="content.isDark ? `rgba(250,246,72,0.5)` : undefined"
   ></what-martix>
-  <router-view class="animate__animated animate__fadeIn fill"></router-view>
+  <router-view class="fill changeTheme"></router-view>
 </template>
 
 <script setup>
@@ -42,8 +42,6 @@ body {
   min-height: 100vh;
   text-rendering: optimizeLegibility;
   font-family: 楷体;
-  color: var(--color);
-  background-color: var(--background-color);
 }
 input {
   font-family: 楷体;
@@ -58,6 +56,11 @@ input {
 .fill {
   width: 100%;
   height: 100%;
+  color: var(--color);
+  background-color: var(--background-color);
+}
+.changeTheme {
+  transition: 0.7s background-color, color ease-out;
 }
 .buttonGroup {
   display: flex;
