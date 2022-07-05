@@ -1,9 +1,11 @@
 <template>
-  <what-martix
-    :circleColor="content.isDark ? `rgba(255,255,255,0.5)` : undefined"
-    :mouseCircleColor="content.isDark ? `rgba(250,246,72,0.5)` : undefined"
-  ></what-martix>
-  <router-view class="fill changeTheme"></router-view>
+  <div class="animate__animated animate__fadeIn all">
+    <what-martix
+      :circleColor="content.isDark ? `rgba(255,255,255,0.5)` : undefined"
+      :mouseCircleColor="content.isDark ? `rgba(250,246,72,0.5)` : undefined"
+    ></what-martix>
+    <router-view class="fill changeTheme"></router-view>
+  </div>
 </template>
 
 <script setup>
@@ -53,9 +55,12 @@ input {
   width: 100%;
   height: 100vh;
 }
+.all,
 .fill {
   width: 100%;
   height: 100%;
+}
+.fill {
   color: var(--color);
   background-color: var(--background-color);
 }

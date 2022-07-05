@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <div class="title">打字测试</div>
     <div class="buttonGroup size">
       <div @click="goUpload" class="hvr-fade button size">上传内容</div>
       <el-input-number
@@ -36,9 +37,16 @@ function goInput() {
 <style scoped>
 .home {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.title {
+  margin: 0.2rem 0;
+  font-size: 0.5rem;
+}
+.buttonGroup {
+  flex-direction: row;
 }
 .size {
   width: 50%;
