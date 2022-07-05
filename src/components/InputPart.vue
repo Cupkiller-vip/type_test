@@ -1,6 +1,9 @@
 <template>
   <div class="inputPart" :style="{ '--size': size * 0.1 + 'rem' }">
-    <div>
+    <div
+      class="inputText"
+      :data-text="state.input.slice(0, state.correctLength)"
+    >
       {{ props.content }}
     </div>
     <div class="el-input">
@@ -74,6 +77,19 @@ watch(
 <style scoped>
 .inputPart {
   font-size: var(--size);
+}
+.inputText {
+  position: relative;
+}
+.inputText::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: yellow;
+  color: transparent;
 }
 .el-input {
   height: var(--size);
