@@ -19,7 +19,7 @@ import { contentStore } from "../stores/content";
 const content = contentStore();
 const $router = useRouter();
 const state = reactive({
-  time: 5,
+  time: 60,
 });
 function goUpload() {
   $router.push({
