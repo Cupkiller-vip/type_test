@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__fadeIn all">
+  <div class="all">
     <what-martix
       :circleColor="content.isDark ? `rgba(255,255,255,0.5)` : undefined"
       :mouseCircleColor="content.isDark ? `rgba(250,246,72,0.5)` : undefined"
