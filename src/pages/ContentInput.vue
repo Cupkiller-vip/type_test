@@ -61,7 +61,9 @@ function backHome() {
   $router.push({
     name: "home",
   });
-  content.changeDialogVisible();
+  if(content.dialogVisible){
+    content.changeDialogVisible();
+  }
 }
 function reTest() {
   location.reload();
