@@ -71,7 +71,9 @@ function reTest() {
 function pushProcessing(r) {
   let rows = r.length / 20;
   for (let i = 0; i < rows; i++) {
-    state.items.push(r.slice(i * 20, (i + 1) * 20));
+    let t = r.slice(i * 20, (i + 1) * 20);
+    state.items.push(t);
+    content.getRealLength(t.length);
   }
 }
 function textProcessing() {
@@ -95,7 +97,7 @@ onMounted(() => {
 watch(
   () => content.inputLength,
   () => {
-    if (content.inputLength === content.text.length) {
+    if (content.inputLength === content.realLength) {
       content.countDownStop();
       content.changeDialogVisible();
     }

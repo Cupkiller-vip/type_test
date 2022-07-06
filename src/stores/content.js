@@ -6,6 +6,7 @@ export const contentStore = defineStore({
     return {
       text: "又回到最初的起点\n记忆中你青涩的脸",
       inputLength: 0,
+      realLength: 0,
       time: undefined,
       reTime: undefined,
       startTime: undefined,
@@ -23,8 +24,8 @@ export const contentStore = defineStore({
   getters: {
     averageSpeed: (state) => {
       return (
-        ((state.inputLength * 60) / (state.lastTime - state.startTime)) *
-        1000
+        (state.inputLength / (state.lastTime - state.startTime)) *
+        60000
       ).toFixed();
     },
   },
@@ -46,6 +47,9 @@ export const contentStore = defineStore({
     },
     decreaseInput(length) {
       this.inputLength = this.inputLength - length;
+    },
+    getRealLength(length) {
+      this.realLength = this.realLength + length;
     },
     countDown() {
       this.startTime = new Date().getTime();
@@ -70,17 +74,18 @@ export const contentStore = defineStore({
     },
     countDownStop() {
       clearTimeout(this.countDownGo);
+      this.isTimeRun = false;
     },
     speedUpdate(changeTextLength) {
       this.nowTime = new Date().getTime();
       this.speed = (
-        (changeTextLength * 1000.0 * 60) /
+        (changeTextLength * 1000 * 60) /
         (this.nowTime - this.lastTime)
       ).toFixed();
-      this.lastTime = this.nowTime;
-      if (this.maxSpeed < this.speed) {
+      if (Number(this.maxSpeed) < Number(this.speed)) {
         this.maxSpeed = this.speed;
       }
+      this.lastTime = this.nowTime;
     },
     changeTheme() {
       this.isDark = !this.isDark;
