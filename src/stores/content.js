@@ -22,7 +22,10 @@ export const contentStore = defineStore({
   },
   getters: {
     averageSpeed: (state) => {
-      return ((state.inputLength * 60) / state.time).toFixed();
+      return (
+        ((state.inputLength * 60) / (state.lastTime - state.startTime)) *
+        1000
+      ).toFixed();
     },
   },
   actions: {
@@ -59,11 +62,14 @@ export const contentStore = defineStore({
         nextTime = 0;
       }
       if (this.reTime <= 0) {
-        clearTimeout(this.countDownGo);
+        this.countDownStop();
         this.changeDialogVisible();
       } else {
         this.countDownGo = setTimeout(() => this.countDownSetting(), nextTime);
       }
+    },
+    countDownStop() {
+      clearTimeout(this.countDownGo);
     },
     speedUpdate(changeTextLength) {
       this.nowTime = new Date().getTime();

@@ -32,7 +32,7 @@
       width="30%"
       center
     >
-      <div>总计时间：{{ content.time }} 秒</div>
+      <div>总计时间：{{ content.time - content.reTime }} 秒</div>
       <div>最高速度：{{ content.maxSpeed }} 字/分</div>
       <div>平均速度：{{ content.averageSpeed }} 字/分</div>
       <div class="buttonGroup size">
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, watch } from "vue";
 import { contentStore } from "../stores/content";
 import inputPart from "../components/InputPart.vue";
 import { useRouter } from "vue-router";
@@ -61,7 +61,7 @@ function backHome() {
   $router.push({
     name: "home",
   });
-  if(content.dialogVisible){
+  if (content.dialogVisible) {
     content.changeDialogVisible();
   }
 }
@@ -92,6 +92,15 @@ onMounted(() => {
   textProcessing();
   content.resetTime();
 });
+watch(
+  () => content.inputLength,
+  () => {
+    if (content.inputLength === content.text.length) {
+      content.countDownStop();
+      content.changeDialogVisible();
+    }
+  }
+);
 </script>
 
 <style>
